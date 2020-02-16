@@ -14,9 +14,7 @@ output:
       "--bibliography", "/Users/kjhealy/Documents/bibs/socbib-pandoc.bib",
       "--filter", "pandoc-crossref",
       "--filter", "pandoc-citeproc",
-      "--csl", "/Users/kjhealy/.pandoc/csl/ajps.csl",
-      "--filter", "pandoc-citeproc-preamble", 
-      "-M", "citeproc-preamble=config/preamble.tex"
+      "--csl", "/Users/kjhealy/.pandoc/csl/ajps.csl"
       ]      
   html_document: radix::radix_article
 ---
@@ -28,6 +26,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r libraries}
 
 library(tidyverse)
+library(here)
 library(janitor)
 library(socviz)
 library(ggrepel)
