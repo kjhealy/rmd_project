@@ -3,16 +3,12 @@ SRC = $(wildcard *.Rmd)
 
 ## Location of Pandoc binaries
 PANDOC = /usr/local/bin
-#PANDOC = /Users/kjhealy/Source/pandoc-crossref/.cabal-sandbox/bin
 
 ## Location of Pandoc support files.
 PREFIX = /Users/kjhealy/.pandoc
 
 ## Location of your working bibliography file
 BIB = /Users/kjhealy/Documents/bibs/socbib-pandoc.bib
-
-## This directory
-LOCAL = /Users/kjhealy/Documents/data/fin-capability/svyglm
 
 ## CSL stylesheet (located in the csl folder of the PREFIX directory).
 CSL = apsa
@@ -49,7 +45,7 @@ docx:	clean $(DOCX)
 %.tex:	%.md
 	$(PANDOC)/pandoc -r $(OPTIONS) -w latex -s  --pdf-engine=pdflatex --template=$(PREFIX)/templates/rmd-latex.template --filter $(PANDOC)/pandoc-crossref --filter $(PANDOC)/pandoc-citeproc --csl=$(PREFIX)/csl/ajps.csl --bibliography=$(BIB) -o $@ $<
 
-
+# PDFs are generated directly from Rmd with render(), and not indirectly vita knit() to md
 %.pdf:	%.Rmd
 	R --slave -e "set.seed(100);rmarkdown::render('$<')"
 
